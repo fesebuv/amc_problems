@@ -1,0 +1,23 @@
+{
+  "name": "amc_problems",
+  "version": "0.0.1",
+  "description": "amc problems",
+  "main": "src/problem1/problem1.js",
+  "scripts": {
+    "test": "mocha 'test/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fesebuv/amc_problems.git"
+  },
+  "author": "Felipe Buenano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fesebuv/amc_problems/issues"
+  },
+  "homepage": "https://github.com/fesebuv/amc_problems#readme",
+  "devDependencies": {
+    "deep-equal": "^1.0.1",
+    "mocha": "^3.1.2"
+  }
+}
