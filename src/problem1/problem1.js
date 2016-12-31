@@ -1,28 +1,20 @@
 'use strict';
 
-const iterations = 4;
+const fileReader = require('../helpers/fileReader').fileReader;
+const fileSrc = '../problem1/problem1.in';
 
 function getNum(num, radix) {
-  var val = parseInt(num, radix);
-  if(isNaN(val)){
-    return 0
+  if(radix === 8){
+    var arrNum = num.split('');
+    if(arrNum.indexOf('9') > -1) {
+      return 0
+    }
   }
-  return val;
+  return parseInt(num, radix) || 0;
 }
 
-module.exports.problem1 = function(iterations) {
-  var sampleData = [
-    '1234',
-    '9',
-    '1777',
-    '129'
-  ];
-
-  for(var i=0; i<iterations; i++) {
-    var num = sampleData[i];
-    console.log('%s %s %s', i + 1, getNum(num,8), getNum(num,10), getNum(num,16));
-  }
-
+module.exports.problem1 = function(dataSet) {
+  dataSet.forEach(function(num, index){
+    console.log('%s %s %s', index + 1, getNum(num,8), getNum(num,10), getNum(num,16));
+  });
 };
-
-module.exports.problem1(iterations);
