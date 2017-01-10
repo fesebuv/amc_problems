@@ -4,7 +4,9 @@
 
 const fs = require('fs');
 const readline = require('readline');
-// const problem1 = require('./problem1/problem1').problem1;
+
+const problem1 = require('./problem1/problem1').problem1;
+const problem2 = require('./problem2/problem2').problem2;
 
 const fileReader = require('./helpers/fileReader').fileReader;
 
@@ -28,4 +30,5 @@ const fileReader = require('./helpers/fileReader').fileReader;
 // 	problem1(data);
 // });
 
-fileReader('../../src/problem1/problem1.in');
+// fileReader(problem1, '../../src/problem1/problem1.in');
+fileReader(problem2, '../../src/problem2/problem2.in');
