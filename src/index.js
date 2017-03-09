@@ -42,7 +42,7 @@ file1.then((data) => {
 })
 .then((p1) => {
   outputFile1.then((out) => {
-    console.log(`is equal? ${equal(p1, out)}`);
+    console.log(`is problem1 resolved? ${equal(p1, out)}`);
   });
 });
 

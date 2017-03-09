@@ -3,12 +3,14 @@
 // const fileReader = require('../helpers/fileReader').fileReader;
 // const fileSrc = '../problem1/problem1.in';
 
+function greaterThan8(num) {
+  var arrNum = num.split('');
+  return (arrNum.indexOf('9') > -1 || arrNum.indexOf('8') > -1)
+}
+
 function getNum(num, radix) {
-  if(radix === 8){
-    var arrNum = num.split('');
-    if(arrNum.indexOf('9') > -1 || arrNum.indexOf('8') > -1) {
-      return 0
-    }
+  if(radix === 8 && greaterThan8(num)){
+    return 0;
   }
   return parseInt(num, radix) || 0;
 }
