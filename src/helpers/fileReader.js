@@ -58,3 +58,31 @@ module.exports.fileReader = function(fileSource) {
       console.log(err);
     });
 };
+
+module.exports.outputReader = function(fileSource) {
+
+  return Promise.resolve()
+    .then(() => {
+      const source = path.resolve(__dirname, fileSource);
+      return readline.createInterface({
+    	  input: fs.createReadStream(source)
+    	});
+    })
+    .then((lineReader) => {
+      return new Promise(function(resolve, reject){
+        let dataSet = [];
+        lineReader.on('line',function (line) {
+          dataSet.push(line);
+        });
+        lineReader.on('close', function() {
+          resolve(dataSet);
+        });
+      });
+    })
+    .then((dataSet) => {
+      return dataSet;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

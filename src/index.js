@@ -4,11 +4,13 @@
 
 const fs = require('fs');
 const readline = require('readline');
+const equal = require('deep-equal');
 
 const problem1 = require('./problem1/problem1').problem1;
 const problem2 = require('./problem2/problem2').problem2;
 
 const fileReader = require('./helpers/fileReader').fileReader;
+const outputReader = require('./helpers/fileReader').outputReader;
 
 // let dataSet = [];
 
@@ -31,11 +33,20 @@ const fileReader = require('./helpers/fileReader').fileReader;
 // });
 
 const file1 = fileReader('../../src/problem1/problem1.in');
-const file2 = fileReader('../../src/problem2/problem2.in')
+const file2 = fileReader('../../src/problem2/problem2.in');
+
+const outputFile1 = outputReader('../../src/problem1/problem1.out');
+
 file1.then((data) => {
-  problem1(data);
+  return problem1(data);
+})
+.then((p1) => {
+  outputFile1.then((out) => {
+    console.log(`is equal? ${equal(p1, out)}`);
+  });
 });
-file2.then((data) => {
-  problem2(data);
-});
+
+// file2.then((data) => {
+//   problem2(data);
+// });
 // fileReader(problem2, '../../src/problem2/problem2.in');
