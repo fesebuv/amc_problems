@@ -1,7 +1,7 @@
 'use strict';
 
-const fileReader = require('../helpers/fileReader').fileReader;
-const fileSrc = '../problem1/problem1.in';
+// const fileReader = require('../helpers/fileReader').fileReader;
+// const fileSrc = '../problem1/problem1.in';
 
 function getNum(num, radix) {
   if(radix === 8){

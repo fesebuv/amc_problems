@@ -30,5 +30,12 @@ const fileReader = require('./helpers/fileReader').fileReader;
 // 	problem1(data);
 // });
 
-// fileReader(problem1, '../../src/problem1/problem1.in');
-fileReader(problem2, '../../src/problem2/problem2.in');
+const file1 = fileReader('../../src/problem1/problem1.in');
+const file2 = fileReader('../../src/problem2/problem2.in')
+file1.then((data) => {
+  problem1(data);
+});
+file2.then((data) => {
+  problem2(data);
+});
+// fileReader(problem2, '../../src/problem2/problem2.in');
