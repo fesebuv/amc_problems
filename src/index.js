@@ -36,6 +36,7 @@ const file1 = fileReader('../../src/problem1/problem1.in');
 const file2 = fileReader('../../src/problem2/problem2.in');
 
 const outputFile1 = outputReader('../../src/problem1/problem1.out');
+const outputFile2 = outputReader('../../src/problem2/problem2.out');
 
 file1.then((data) => {
   return problem1(data);
@@ -46,7 +47,11 @@ file1.then((data) => {
   });
 });
 
-// file2.then((data) => {
-//   problem2(data);
-// });
-// fileReader(problem2, '../../src/problem2/problem2.in');
+file2.then((data) => {
+  return problem2(data);
+})
+.then((p2) => {
+  outputFile2.then((out) => {
+    console.log(`is problem2 resolved? ${equal(p2, out)}`);
+  });
+});
