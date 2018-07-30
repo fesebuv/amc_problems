@@ -1,44 +1,21 @@
-
-
 'use strict';
 
 const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
 
-// module.exports.fileReader = function(cb, fileSource) {
-//   let dataSet = [];
-//   let source = path.resolve(__dirname, fileSource);
-//
-// 	const lineReader = readline.createInterface({
-// 	  input: fs.createReadStream(source);
-// 	});
-//
-// 	lineReader.on('line', function (line) {
-// 	  dataSet.push(line.split(' '));
-// 	});
-//
-//
-// 	lineReader.on('close', function() {
-// 		let rawData = dataSet.slice(1);
-// 		let data = rawData.map(function(value){
-// 	    	return value[1];
-// 	  	});
-// 		cb(data);
-// 	});
-// };
 
-module.exports.fileReader = function(fileSource) {
-
+function fileReader1(fileSource) {
+  const source = path.resolve(__dirname, fileSource);
   return Promise.resolve()
     .then(() => {
-      const source = path.resolve(__dirname, fileSource);
-      return readline.createInterface({
-    	  input: fs.createReadStream(source)
-    	});
+      const responseObj = {
+        input: fs.createReadStream(source)
+      };
+      return readline.createInterface(responseObj);
     })
     .then((lineReader) => {
-      return new Promise(function(resolve, reject){
+      return new Promise(function (resolve, reject){
         let dataSet = [];
         lineReader.on('line',function (line) {
           dataSet.push(line);
@@ -59,8 +36,7 @@ module.exports.fileReader = function(fileSource) {
     });
 };
 
-module.exports.outputReader = function(fileSource) {
-
+function outputReader1(fileSource) {
   return Promise.resolve()
     .then(() => {
       const source = path.resolve(__dirname, fileSource);
@@ -85,4 +61,51 @@ module.exports.outputReader = function(fileSource) {
     .catch((err) => {
       console.log(err);
     });
+};
+
+
+function fileReader (fileSource) {
+  const source = path.resolve(__dirname, fileSource);
+  return Promise.resolve()
+    .then(() => {
+      const responseObj = {
+        input: fs.createReadStream(source)
+      };
+      return readline.createInterface(responseObj);
+    })
+    .then((lineReader) => {
+      return new Promise(function (resolve, reject){
+        let dataSet = [];
+        lineReader.on('line',function (line) {
+          dataSet.push(line);
+        });
+        lineReader.on('close', function() {
+          resolve(dataSet);
+        });
+      });
+    })
+
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+function inputReader (fileSource) {
+  return fileReader(fileSource)
+    .then((dataSet) => {
+      const rawData = dataSet.slice(1);
+      return rawData.map(function (value) {
+        return value.split(' ')[1];
+      });
+  });
+}
+
+function outputReader (fileSource) {
+  return fileReader(fileSource);
+}
+
+module.exports = {
+  inputReader,
+  outputReader
 };

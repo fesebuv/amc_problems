@@ -5,54 +5,31 @@
 const fs = require('fs');
 const readline = require('readline');
 const equal = require('deep-equal');
+const { inputReader, outputReader } = require('./helpers/fileReader');
 
 const problem1 = require('./problem1/problem1').problem1;
 const problem2 = require('./problem2/problem2').problem2;
 
-const fileReader = require('./helpers/fileReader').fileReader;
-const outputReader = require('./helpers/fileReader').outputReader;
-
-// let dataSet = [];
-
-// const lineReader = require('readline').createInterface({
-//   input: require('fs').createReadStream('./src/problem1/problem1.in')
-// });
-
-// lineReader.on('line', function (line) {
-//   dataSet.push(line.split(' '));
-// });
-
-
-// lineReader.on('close', function() {
-// 	// console.log(dataSet);
-// 	let rawData = dataSet.slice(1);
-// 	let data = rawData.map(function(value){
-//     	return value[1];
-//   	});
-// 	problem1(data);
-// });
-
-const file1 = fileReader('../../src/problem1/problem1.in');
-const file2 = fileReader('../../src/problem2/problem2.in');
+const file1 = inputReader('../../src/problem1/problem1.in');
+const file2 = inputReader('../../src/problem2/problem2.in');
 
 const outputFile1 = outputReader('../../src/problem1/problem1.out');
 const outputFile2 = outputReader('../../src/problem2/problem2.out');
 
-// file1.then((data) => {
-//   return problem1(data);
+file1
+  .then((data) => problem1(data))
+  .then((p1) => {
+    outputFile1.then((out) => {
+      console.log(`is problem1 resolved? ${equal(p1, out)}`);
+    });
+  });
+
+// file2.then((data) => {
+//   return problem2(data);
 // })
-// .then((p1) => {
-//   outputFile1.then((out) => {
-//     console.log(`is problem1 resolved? ${equal(p1, out)}`);
+// .then((p2) => {
+//   outputFile2.then((out) => {
+//     console.log(p2);
+//   //   console.log(`is problem2 resolved? ${equal(p2, out)}`);
 //   });
 // });
-
-file2.then((data) => {
-  return problem2(data);
-})
-.then((p2) => {
-  outputFile2.then((out) => {
-    console.log(p2);
-  //   console.log(`is problem2 resolved? ${equal(p2, out)}`);
-  });
-});
