@@ -74,7 +74,7 @@ function getOutput(str) {
   return parseInt(value, 10);
 }
 
-module.exports.problem2 = function(dataSet) {
+module.exports.default = function(dataSet) {
 
   var ds = [dataSet[0]];
 
