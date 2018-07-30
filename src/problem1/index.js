@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const { writeToFile } = require('../helpers/fileReader');
+const { writeToFile } = require('../helpers/');
 
 function greaterThan8(num) {
   var arrNum = num.split('');

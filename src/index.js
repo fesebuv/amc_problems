@@ -1,7 +1,4 @@
-
-const readline = require('readline');
-const equal = require('deep-equal');
-const { inputReader, outputReader, FILES } = require('./helpers/fileReader');
+const { inputReader, outputReader, FILES } = require('./helpers/');
 
 FILES.forEach(function (fileName) {
   const problem = require(`./${fileName}/`).default;

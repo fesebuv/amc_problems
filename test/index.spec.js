@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { FILES, outputReader } = require('../src/helpers/fileReader');
+const { FILES, outputReader } = require('../src/helpers/');
 
 describe('AMC problems', function () {
   FILES.forEach(function (fileName) {
