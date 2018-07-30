@@ -1,4 +1,6 @@
-'use strict';
+const fs = require('fs');
+
+const { writeToFile } = require('../helpers/fileReader');
 
 function greaterThan8(num) {
   var arrNum = num.split('');
@@ -13,9 +15,10 @@ function getNum(num, radix) {
 }
 
 function problem1(dataSet) {
-  return dataSet.map(function(num, index) {
+  const data = dataSet.map(function(num, index) {
     return `${index + 1} ${getNum(num,8)} ${getNum(num,10)} ${getNum(num,16)}`;
   });
+  writeToFile(data, 'problem1');
 };
 
 module.exports =  {
