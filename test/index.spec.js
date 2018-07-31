@@ -9,8 +9,8 @@ describe('AMC problems', function () {
         const outputFile = outputReader(outputLoc);
 
         return outputFile.then((src) => {
-          const expectedLoc = `../src/${fileName}/data.out`;
-          const expectedFile = outputReader(outputLoc);
+          const expectedLoc = `../${fileName}/data.out`;
+          const expectedFile = outputReader(expectedLoc);
 
           return expectedFile.then((out) => {
             expect(src).to.deep.equal(out);
