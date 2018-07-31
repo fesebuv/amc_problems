@@ -4,7 +4,7 @@
   "description": "amc problems",
   "main": "index.js",
   "scripts": {
-    "pretest": "node index.js",
+    "pretest": "rm -rf build && mkdir build && node index.js",
     "test": "mocha 'test/**/*.js'"
   },
   "repository": {

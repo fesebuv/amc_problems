@@ -47,7 +47,7 @@ function outputReader (fileSource) {
 }
 
 function writeToFile(data, fileName) {
-  const stream = fs.createWriteStream(`./build/${fileName}/output.txt`);
+  const stream = fs.createWriteStream(`./build/${fileName}_output.txt`);
   stream.once('open', function(fd) {
     data.forEach(function(line) {
       stream.write(`${line}\n`);

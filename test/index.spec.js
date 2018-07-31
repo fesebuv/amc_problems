@@ -5,7 +5,7 @@ describe('AMC problems', function () {
   FILES.forEach(function (fileName) {
     describe(`${fileName}`, function () {
       it(`is ${fileName} resolved?`, function () {
-        const outputLoc = `../../build/${fileName}/output.txt`;
+        const outputLoc = `../../build/${fileName}_output.txt`;
         const outputFile = outputReader(outputLoc);
 
         return outputFile.then((src) => {

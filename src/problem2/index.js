@@ -13,7 +13,7 @@ var charMap = {
 };
 
 var base27 = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q'];
-var modifyBase27 = ['0','1','2','3','4','5','6','7','8','9','A','C','D','E','F','H','J','K','L','M','N','P','R','T','V','W','X'];
+var givenBase27 = ['0','1','2','3','4','5','6','7','8','9','A','C','D','E','F','H','J','K','L','M','N','P','R','T','V','W','X'];
 
 var checkDigitArr = [2, 4, 5, 7, 8, 10, 11, 13];
 
@@ -24,37 +24,29 @@ function base27To10(str) {
 
 function cleanData(input) {
   const arr = input.split('');
-
   return arr
-    .map(function (chr) {
+    .map((chr) => {
       if(charMap.hasOwnProperty(chr)) {
         return charMap[chr];
       }
       return chr;
     })
-    .map(function (chr) {
-      const index = modifyBase27.indexOf(chr);
+    .map((chr) => {
+      const index = givenBase27.indexOf(chr);
       if( index > -1) {
         return base27[index];
       }
+      return chr;
     })
     .join('');
 }
 
 
-function getCheckSum(digits) {
-  const arr = digits.split('');
-  const sum = arr
-    .map(function (chr) {
-      return base27To10(chr);
-    })
-    .map(function (num, index) {
-      const check = checkDigitArr[index];
-      return num * check;
-    })
-    .reduce(function (acc, curr) {
-      return acc + curr;
-    }, 0);
+function getCheckSum(digitArr) {
+  const sum = digitArr
+    .map((chr) => base27To10(chr))
+    .map((num, index) => num * checkDigitArr[index])
+    .reduce((acc, curr) => acc + curr, 0);
 
   return sum % 27;
 }
@@ -62,22 +54,20 @@ function getCheckSum(digits) {
 function calculateCheckSum(input) {
   const stringArr = input.split('');
   const checkDigit = stringArr.pop();
-  const checkPhrase = stringArr.join('');
 
-  const checkSum = getCheckSum(checkPhrase);
   const num = base27To10(checkDigit);
+  const checkSum = getCheckSum(stringArr);
 
 
-  if(num === checkSum) {
-    return base27To10(checkPhrase);
-  } else {
+  if(num !== checkSum) {
     return 'Invalid';
   }
-
+  const checkPhrase = stringArr.join('');
+  return base27To10(checkPhrase);
 }
 
 function problem2(dataSet) {
-  const data =  dataSet.map(function (input, index) {
+  const data = dataSet.map((input, index) => {
     const cleanInput = cleanData(input);
     const checkSum = calculateCheckSum(cleanInput);
     return `${index + 1} ${checkSum}`;
