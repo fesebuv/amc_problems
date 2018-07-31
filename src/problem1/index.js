@@ -1,10 +1,8 @@
-const fs = require('fs');
-
 const { writeToFile } = require('../helpers/');
 
 function greaterThan8(num) {
-  var arrNum = num.split('');
-  return (arrNum.indexOf('9') > -1 || arrNum.indexOf('8') > -1)
+  const arrNum = num.split('');
+  return (arrNum.indexOf('9') > -1 || arrNum.indexOf('8') > -1);
 }
 
 function getNum(num, radix) {
@@ -15,7 +13,7 @@ function getNum(num, radix) {
 }
 
 function problem1(dataSet) {
-  const data = dataSet.map(function(num, index) {
+  const data = dataSet.map((num, index) => {
     return `${index + 1} ${getNum(num,8)} ${getNum(num,10)} ${getNum(num,16)}`;
   });
   writeToFile(data, 'problem1');

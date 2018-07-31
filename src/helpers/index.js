@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
@@ -16,12 +14,12 @@ function fileReader (fileSource) {
       return readline.createInterface(responseObj);
     })
     .then((lineReader) => {
-      return new Promise(function (resolve, reject){
-        let dataSet = [];
-        lineReader.on('line',function (line) {
+      return new Promise(function (resolve, reject) {
+        const dataSet = [];
+        lineReader.on('line',(line) => {
           dataSet.push(line);
         });
-        lineReader.on('close', function() {
+        lineReader.on('close', () => {
           resolve(dataSet);
         });
       });
@@ -36,9 +34,7 @@ function inputReader (fileSource) {
   return fileReader(fileSource)
     .then((dataSet) => {
       const rawData = dataSet.slice(1);
-      return rawData.map(function (value) {
-        return value.split(' ')[1];
-      });
+      return rawData.map((value) => value.split(' ')[1]);
   });
 }
 
@@ -48,8 +44,8 @@ function outputReader (fileSource) {
 
 function writeToFile(data, fileName) {
   const stream = fs.createWriteStream(`./build/${fileName}_output.txt`);
-  stream.once('open', function(fd) {
-    data.forEach(function(line) {
+  stream.once('open', function() {
+    data.forEach((line) => {
       stream.write(`${line}\n`);
     });
     stream.end();
