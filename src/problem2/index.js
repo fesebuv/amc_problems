@@ -19,11 +19,11 @@ var checkDigitArr = [2, 4, 5, 7, 8, 10, 11, 13];
 
 function base27To10(str) {
   const num = parseInt(str, 27).toString(10);
-  return num;
+  return num * 1;
 }
 
 function cleanData(input) {
-  var arr = input.split('');
+  const arr = input.split('');
 
   return arr
     .map(function (chr) {
@@ -33,7 +33,7 @@ function cleanData(input) {
       return chr;
     })
     .map(function (chr) {
-      var index = modifyBase27.indexOf(chr)
+      const index = modifyBase27.indexOf(chr);
       if( index > -1) {
         return base27[index];
       }
@@ -43,13 +43,13 @@ function cleanData(input) {
 
 
 function getCheckSum(digits) {
-  var arr = digits.split('');
-  var sum = arr
+  const arr = digits.split('');
+  const sum = arr
     .map(function (chr) {
       return base27To10(chr);
     })
     .map(function (num, index) {
-      var check = checkDigitArr[index];
+      const check = checkDigitArr[index];
       return num * check;
     })
     .reduce(function (acc, curr) {
@@ -60,16 +60,16 @@ function getCheckSum(digits) {
 }
 
 function calculateCheckSum(input) {
-  var stringArr = input.split('');
-  var checkDigit = stringArr.pop();
-  var checkPhrase = stringArr.join('');
+  const stringArr = input.split('');
+  const checkDigit = stringArr.pop();
+  const checkPhrase = stringArr.join('');
 
-  var checkSum = getCheckSum(checkPhrase);
-  var num = base27To10(checkDigit);
+  const checkSum = getCheckSum(checkPhrase);
+  const num = base27To10(checkDigit);
 
 
-  if(num * 1 === checkSum) {
-    return base27To10(checkPhrase)*1;
+  if(num === checkSum) {
+    return base27To10(checkPhrase);
   } else {
     return 'Invalid';
   }
@@ -77,9 +77,8 @@ function calculateCheckSum(input) {
 }
 
 function problem2(dataSet) {
-  console.log(dataSet[0], '<< dataSet')
   const data =  dataSet.map(function (input, index) {
-    var cleanInput = cleanData(input);
+    const cleanInput = cleanData(input);
     const checkSum = calculateCheckSum(cleanInput);
     return `${index + 1} ${checkSum}`;
   });
