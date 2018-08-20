@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
 
-const FILES = ['problem1', 'problem2'];
+const FILES = ['problem1', 'problem2', 'problem1_2017'];
 
 function fileReader (fileSource) {
   const source = path.resolve(__dirname, fileSource);
