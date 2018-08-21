@@ -1,8 +1,8 @@
 const { writeToFile } = require('../helpers/');
 
 function candlesForhanukah(candles) {
-  var total = 0;
-  for(var i = candles + 1; i >= 2; i-- ) {
+  let total = 0;
+  for(let i = candles + 1; i >= 2; i-- ) {
     total = total + i;
   }
   return total * 1;
