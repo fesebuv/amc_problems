@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const readline = require('readline');
 
-const FILES = ['problem1', 'problem2', 'problem1_2017'];
+const FILES = ['problem1', 'problem2', 'problem1_2017', 'problem2_2017'];
 
 function fileReader (fileSource) {
   const source = path.resolve(__dirname, fileSource);
@@ -34,7 +34,7 @@ function inputReader (fileSource) {
   return fileReader(fileSource)
     .then((dataSet) => {
       const rawData = dataSet.slice(1);
-      return rawData.map((value) => value.split(' ')[1]);
+      return rawData.map((value) => value.split(' ').slice(1));
   });
 }
 

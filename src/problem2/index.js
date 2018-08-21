@@ -51,7 +51,8 @@ function calculateCheckSum(input) {
 
 function problem2(dataSet) {
   const data = dataSet.map((input, index) => {
-    const cleanInput = normalizeData(input);
+    const [ val ] = input;
+    const cleanInput = normalizeData(val);
     const checkSum = calculateCheckSum(cleanInput);
     return `${index + 1} ${checkSum}`;
   });

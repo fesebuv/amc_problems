@@ -13,7 +13,8 @@ function getNum(num, radix) {
 }
 
 function problem1(dataSet) {
-  const data = dataSet.map((num, index) => {
+  const data = dataSet.map((input, index) => {
+    const [ num ] = input;
     return `${index + 1} ${getNum(num,8)} ${getNum(num,10)} ${getNum(num,16)}`;
   });
   writeToFile(data, 'problem1');

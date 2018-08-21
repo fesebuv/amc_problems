@@ -9,7 +9,8 @@ function candlesForhanukah(candles) {
 }
 
 function problem1_2017(dataSet) {
-  const data = dataSet.map((num, index) => {
+  const data = dataSet.map((input, index) => {
+    const [ num ] = input;
     const candles = num * 1;
     return `${index + 1} ${candlesForhanukah(candles)}`;
   });
